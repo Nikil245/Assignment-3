@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+void sort(char books[][100], int n) {
+    char temp[100];
+    for (int i = 0; i < n - 1; i++)
+        for (int j = i + 1; j < n; j++)
+            if (strcmp(books[i], books[j]) > 0) {
+                strcpy(temp, books[i]);
+                strcpy(books[i], books[j]);
+                strcpy(books[j], temp);
+            }
+}
+int search(char books[][100], int n, char key[]) {
+    for (int i = 0; i < n; i++)
+        if (strcmp(books[i], key) == 0) return 1;
+    return 0;
+}
+int main() {
+    int n;
+    char books[100][100], key[100];
+    printf("Enter number of books: ");
+    scanf("%d", &n);
+    printf("Enter book titles:\n");
+    for (int i = 0; i < n; i++){
+        scanf("%s", books[i]); 
+    }
+    sort(books, n);
+    printf("\nSorted List:\n");
+    for (int i = 0; i < n; i++){
+        printf("%d. %s\n", i + 1, books[i]);
+    }
+    printf("\nEnter book title to search: ");
+    scanf("%s", key);
+    if (search(books, n, key))
+    printf("Book found in the library.\n");
+else
+    printf("Book not found in the library.\n");
+return 0;
+}
