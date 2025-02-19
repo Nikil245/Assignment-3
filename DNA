@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <string.h>
+int countPattern(char dna[], char pattern[]) {
+    int count = 0;
+    int len_dna = strlen(dna);
+    int len_pat = strlen(pattern);
+    for (int i = 0; i <= len_dna - len_pat; i++)
+        if (strncmp(&dna[i], pattern, len_pat) == 0) count++;
+    return count;
+}
+int main() {
+    char dna[100], pattern[100];
+    printf("Enter DNA Sequence: ");
+    scanf("%s", dna);
+    printf("Enter pattern to search: ");
+    scanf("%s", pattern);
+    printf("Pattern found %d time(s) in the DNA sequence.\n", countPattern(dna, pattern));
+    return 0;
+}
